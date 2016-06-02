@@ -1,0 +1,60 @@
+Starting vert.x application...
+e845fee8-9f43-4681-b465-8dec4b6f6f63
+15:14:41.034 [main] DEBUG i.n.u.i.l.InternalLoggerFactory - Using SLF4J as the default logging framework
+15:14:41.039 [main] DEBUG io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.level: simple
+15:14:41.040 [main] DEBUG io.netty.util.ResourceLeakDetector - -Dio.netty.leakDetection.maxRecords: 4
+15:14:41.048 [main] DEBUG i.n.c.MultithreadEventLoopGroup - -Dio.netty.eventLoopThreads: 16
+15:14:41.053 [main] DEBUG i.n.util.internal.PlatformDependent0 - java.nio.Buffer.address: available
+15:14:41.053 [main] DEBUG i.n.util.internal.PlatformDependent0 - sun.misc.Unsafe.theUnsafe: available
+15:14:41.054 [main] DEBUG i.n.util.internal.PlatformDependent0 - sun.misc.Unsafe.copyMemory: available
+15:14:41.054 [main] DEBUG i.n.util.internal.PlatformDependent0 - java.nio.Bits.unaligned: true
+15:14:41.054 [main] DEBUG i.n.util.internal.PlatformDependent - Java version: 8
+15:14:41.054 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.noUnsafe: false
+15:14:41.054 [main] DEBUG i.n.util.internal.PlatformDependent - sun.misc.Unsafe: available
+15:14:41.054 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.noJavassist: false
+15:14:41.055 [main] DEBUG i.n.util.internal.PlatformDependent - Javassist: unavailable
+15:14:41.055 [main] DEBUG i.n.util.internal.PlatformDependent - You don't have Javassist in your class path or you don't have enough permission to load dynamically generated classes.  Please check the configuration for better performance.
+15:14:41.055 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.tmpdir: /var/folders/9s/_xvncgrx3m3gxn5d81_b1hsh0000gp/T (java.io.tmpdir)
+15:14:41.055 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.bitMode: 64 (sun.arch.data.model)
+15:14:41.055 [main] DEBUG i.n.util.internal.PlatformDependent - -Dio.netty.noPreferDirect: false
+15:14:41.067 [main] DEBUG io.netty.channel.nio.NioEventLoop - -Dio.netty.noKeySetOptimization: false
+15:14:41.067 [main] DEBUG io.netty.channel.nio.NioEventLoop - -Dio.netty.selectorAutoRebuildThreshold: 512
+15:14:41.212 [vert.x-eventloop-thread-1] DEBUG com.devry.notification.Deployer - Main verticle has started, let's deploy some others...
+15:14:41.212 [vert.x-eventloop-thread-1] DEBUG com.devry.notification.Deployer - port=8543
+15:14:41.212 [vert.x-eventloop-thread-1] DEBUG com.devry.notification.Deployer - instnaces=1
+15:14:41.212 [vert.x-eventloop-thread-1] DEBUG com.devry.notification.Deployer - ha=false
+15:14:41.213 [vert.x-eventloop-thread-2] DEBUG c.d.n.NotificationVerticle - Verticle started vert.x-eventloop-thread-2
+15:14:41.213 [vert.x-eventloop-thread-2] DEBUG c.d.n.NotificationVerticle - API URL = https://fcm.googleapis.com/fcm/send
+15:14:41.214 [vert.x-eventloop-thread-0] INFO  i.v.c.i.l.c.VertxIsolatedDeployer - Succeeded in deploying verticle
+15:14:41.562 [vert.x-eventloop-thread-2] DEBUG i.n.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numHeapArenas: 16
+15:14:41.562 [vert.x-eventloop-thread-2] DEBUG i.n.buffer.PooledByteBufAllocator - -Dio.netty.allocator.numDirectArenas: 16
+15:14:41.562 [vert.x-eventloop-thread-2] DEBUG i.n.buffer.PooledByteBufAllocator - -Dio.netty.allocator.pageSize: 8192
+15:14:41.562 [vert.x-eventloop-thread-2] DEBUG i.n.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxOrder: 11
+15:14:41.562 [vert.x-eventloop-thread-2] DEBUG i.n.buffer.PooledByteBufAllocator - -Dio.netty.allocator.chunkSize: 16777216
+15:14:41.562 [vert.x-eventloop-thread-2] DEBUG i.n.buffer.PooledByteBufAllocator - -Dio.netty.allocator.tinyCacheSize: 512
+15:14:41.562 [vert.x-eventloop-thread-2] DEBUG i.n.buffer.PooledByteBufAllocator - -Dio.netty.allocator.smallCacheSize: 256
+15:14:41.563 [vert.x-eventloop-thread-2] DEBUG i.n.buffer.PooledByteBufAllocator - -Dio.netty.allocator.normalCacheSize: 64
+15:14:41.563 [vert.x-eventloop-thread-2] DEBUG i.n.buffer.PooledByteBufAllocator - -Dio.netty.allocator.maxCachedBufferCapacity: 32768
+15:14:41.563 [vert.x-eventloop-thread-2] DEBUG i.n.buffer.PooledByteBufAllocator - -Dio.netty.allocator.cacheTrimInterval: 8192
+15:14:41.575 [vert.x-eventloop-thread-2] DEBUG io.netty.buffer.AbstractByteBuf - -Dio.netty.buffer.bytebuf.checkAccessible: true
+15:14:41.592 [vert.x-eventloop-thread-2] DEBUG i.n.util.internal.ThreadLocalRandom - -Dio.netty.initialSeedUniquifier: 0x5cb2128ce8a6222f (took 0 ms)
+15:14:41.637 [vert.x-eventloop-thread-2] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.allocator.type: unpooled
+15:14:41.637 [vert.x-eventloop-thread-2] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.threadLocalDirectBufferSize: 65536
+15:14:41.637 [vert.x-eventloop-thread-2] DEBUG io.netty.buffer.ByteBufUtil - -Dio.netty.maxThreadLocalCharBufferSize: 16384
+15:14:41.640 [vert.x-eventloop-thread-2] DEBUG io.netty.util.NetUtil - Loopback interface: lo0 (lo0, 0:0:0:0:0:0:0:1)
+15:14:41.641 [vert.x-eventloop-thread-2] DEBUG io.netty.util.NetUtil - /proc/sys/net/core/somaxconn: 128 (non-existent)
+15:15:06.318 [vert.x-eventloop-thread-2] DEBUG io.netty.util.Recycler - -Dio.netty.recycler.maxCapacity.default: 262144
+15:15:06.409 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0xa93f3051, /0:0:0:0:0:0:0:1:60147 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.413 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0x2a4cf4c8, /0:0:0:0:0:0:0:1:60148 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.416 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0xb0336f52, /0:0:0:0:0:0:0:1:60149 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.419 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0x210f3239, /0:0:0:0:0:0:0:1:60150 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.422 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0x2a8a0a22, /0:0:0:0:0:0:0:1:60151 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.426 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0xecd3cb98, /0:0:0:0:0:0:0:1:60152 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.439 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0xaad200bf, /0:0:0:0:0:0:0:1:60153 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.743 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0xa5f321d4, /0:0:0:0:0:0:0:1:60154 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.743 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0x45e1e771, /0:0:0:0:0:0:0:1:60155 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.756 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0xd98463a3, /0:0:0:0:0:0:0:1:60156 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.756 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0xf6347753, /0:0:0:0:0:0:0:1:60157 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:15:06.757 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0xe979fba2, /0:0:0:0:0:0:0:1:60158 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:50:14.822 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0xc15f2312, /0:0:0:0:0:0:0:1:60330 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+15:50:14.836 [vert.x-eventloop-thread-2] DEBUG io.netty.handler.ssl.SslHandler - [id: 0xa5943cbf, /0:0:0:0:0:0:0:1:60331 => /0:0:0:0:0:0:0:1:8543] HANDSHAKEN: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256

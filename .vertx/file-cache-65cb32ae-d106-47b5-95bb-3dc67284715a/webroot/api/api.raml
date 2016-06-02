@@ -1,0 +1,165 @@
+#%RAML 0.8
+title: Notification REST API
+baseUri: http://localhost:8544/
+version: v1
+/hello:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            schema: |
+              { "$schema": "http://json-schema.org/schema",
+                "type": "object",
+                "description": "Hello World Greeting",
+                "properties": {
+                  "greeting":  { "type": "string" }
+                },
+                "required": [ "greeting" ]
+              }
+/api:              
+  /notification:
+    post:
+      description: |
+        Post notification to GCM server
+      body:
+        application/json:
+          schema: |
+            {
+              "type": "object",
+              "$schema": "http://json-schema.org/draft-03/schema",
+              "required": true,
+              "properties": {
+                "to": {
+                  "type": "string",
+                  "required": true
+                },
+                "notification": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string",
+                      "required": true
+                    },
+                    "body": {
+                      "type": "string",
+                      "required": true
+                    },
+                    "icon": {
+                      "type": "string",
+                      "required": false
+                    } 
+                  }
+                }
+              }
+            }
+          example: |
+            {
+              "to": "/topics/global",
+              "notification" : {
+                "body": "great match",
+                "title": "Portugal vs. Denmark",
+                "icon": "myicon"
+              },
+            }
+    /topics:
+      /global:
+        get:
+          description: |
+            Send user data to each user in global group    
+      /gpa:
+        get:
+          description: |
+            Send user data to each user in gpa group 
+      /android:
+        get:
+          description: |
+            Send user data to each user in android group 
+      /ios:
+        get:
+          description: |
+            Send user data to each user in ios group        
+  /preferences:
+    post:
+      description: |
+        Save user preferences on the backend database.
+      body:
+        application/json:
+          schema: |
+            {
+              "type": "object",
+              "$schema": "http://json-schema.org/draft-03/schema",
+              "required": true,
+              "properties": {
+                "key": {
+                  "description": "Device key",
+                  "type": "String",
+                  "required": true
+                },
+                "dsi": {
+                  "type": "string",
+                  "required": true
+                },
+                "token": {
+                  "type": "string",
+                  "required": true
+                },
+                "global": {
+                  "type": "boolean",
+                  "required": false
+                },
+                "android": {
+                  "type": "boolean",
+                  "required": false
+                },
+                "grade": {
+                  "type": "boolean",
+                  "required": false
+                }
+              }
+            }
+          example: |
+            {
+              "key": "device-key",
+              "dsi": "D40147554",
+              "token" : "GCM-registration-token",
+              "global": true,
+              "android": true,
+              "grade": true
+              
+            }    
+    /{deviceid}:
+      get:
+        description: |
+          Request preference by device ID.
+        responses:
+          200:
+            body:
+              application/json:
+                schema: |
+                  { "$schema": "http://json-schema.org/schema",
+                    "type": "object",
+                    "description": "Preference schema",
+                    "properties": {
+                      "key": {
+                        "description": "Device key",
+                        "type": "String"
+                      },
+                      "dsi": {
+                        "type": "string"
+                      },
+                      "token": {
+                        "type": "string"
+                      },
+                      "global": {
+                        "type": "boolean"
+                      },
+                      "android": {
+                        "type": "boolean"
+                      },
+                      "grade": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [ "key", "dsi", "token" ]
+                  }  

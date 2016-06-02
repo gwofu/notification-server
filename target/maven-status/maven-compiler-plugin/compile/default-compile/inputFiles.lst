@@ -1,0 +1,12 @@
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/db/NotificationDB.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/Deployer.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/dpl/Preferences.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/db/NotificationView.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/db/Preferences.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/dpl/DbEnvironment.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/Encrypter.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/dpl/ExampleDatabasePut.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/db/PreferencesData.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/dpl/DataAccessor.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/db/PreferencesKey.java
+/Users/gwowen/workspace-vertx/notification-server/src/main/java/com/devry/notification/NotificationVerticle.java

@@ -1,0 +1,313 @@
+#%RAML 0.8
+title: Notification REST API
+version: v1
+protocols: [ HTTPS ]
+baseUri: https://localhost:8543/
+mediaType: application/json
+documentation:
+  - title: Mobile Push Notification API
+    content: API for Mobile Push Notification
+    
+securitySchemes:
+  - x-custom:
+      type: x-custom
+      describedBy:
+        headers:
+          authorization:
+            description: |
+              The Base64-encoded token
+            type: string
+          dsi:
+            description: |
+              The data used to generate hash code
+            type: string
+        responses:
+          401:
+            body:
+              application/json:
+                example: |
+                  {
+                    "error": "User not authorized"
+                  }
+
+schemas:
+ - notification: |
+    {
+      "type": "object",
+      "$schema": "http://json-schema.org/schema#",
+      "id": "http://devry.com/mobile/notification.json",
+      "required": true,
+      "properties": {
+        "to": {
+          "type": "string",
+          "required": true,
+          "enum": ["/topics/global", "/topics/android", "/topics/ios"]
+        },
+        "notification": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            },
+            "icon": {
+              "type": "string"
+            } 
+          },
+          "required": ["title", "body"]
+        }
+      }
+    }
+
+ - preferences: |
+    {
+      "type": "object",
+      "$schema": "http://json-schema.org/schema#",
+      "id": "http://devry.com/mobile/preferences.json",
+      "required": true,
+      "properties": {
+        "deviceId": {
+          "description": "Device ID",
+          "type": "String",
+          "required": true
+        },
+        "studentId": {
+          "description": "Studetn DSI number",
+          "type": "string",
+          "required": true
+        },
+        "platform": {
+          "description": "Device platform",
+          "type": "string",
+          "required": false
+        },        
+        "token": {
+          "type": "string",
+          "required": true
+        },
+        "categories": {
+          "type": "string",
+          "required": true
+        }
+      }
+    }
+    
+/api:
+  /version:
+    get:
+      description: |
+        Server version
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "version": "0.1"
+                }
+                 
+  /notification:
+    post:
+      description: |
+        Post notification to GCM server
+      body:
+        application/json:
+          schema: notification
+          example: |
+            {
+              "to": "/topics/global",
+              "notification" : {
+                "title": "Mobile vs. Portal",
+                "body": "great match",
+                "icon": "myicon"
+              }
+            }
+    /topics/{topic}:
+      post:
+        description: |
+          Push notification to GCM server by topic.
+        body:
+          application/json:
+            schema: notification
+            example: |
+              {
+                "to": "/topics/{topic}",
+                "notification" : {
+                  "title": "Mobile vs. Portal",
+                  "body": "great match",
+                  "icon": "myicon"
+                }
+              }
+              
+  /preferences:
+    get:
+      securedBy: [x-custom]
+      headers:
+        authorization:
+          description: |
+            The generated hash code
+          type: string
+          required: true
+          example: AtvaUJKoloIn6yFZa08tG6u4puY9HaRS4yfOUX6a8pc=
+        dsi:
+          description: |
+            The data used to generate hash code
+          type: string
+          required: true
+          default: D40373764
+          example: D40373764
+        
+      description: |
+        Get a list of all preferences
+      responses:
+        200:
+          body:
+            application/json:
+              schema: |
+                { "$schema": "http://json-schema.org/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              example: |
+                [
+                  {
+                    "deviceId": "device-key-1",
+                    "studentId": "D00000001",
+                    "platform": "android",
+                    "token" : "GCM-registration-token-1",
+                    "categories": "0000000000"
+                  }
+                ]
+        401:
+          body:
+            application/json:
+              example: |
+                {
+                  "error": "User not authorized"
+                }
+        404:
+          body:
+            application/json:
+              example: |
+                {
+                  "error": "Resource not found"
+                }  
+    post:
+      headers:
+        authorization:
+          description: |
+            The generated hash code
+          type: string
+          required: true
+          example: AtvaUJKoloIn6yFZa08tG6u4puY9HaRS4yfOUX6a8pc=
+        dsi:
+          description: |
+            The data used to generate hash code
+          type: string
+          required: true
+          default: D40373764
+          example: D40373764
+      description: |
+        Save user preferences on the backend database.
+      body:
+        application/json:
+          schema: preferences
+          example: |
+            {
+              "deviceId": "device-key-1",
+              "studentId": "D00000001",
+              "platform": "android",
+              "token" : "GCM-registration-token-1",
+              "categories": "00000000011"
+            }
+      responses:
+        201:
+          body:
+            application/json:
+              example: |
+                {
+                  "deviceId": "device-key-1",
+                  "studentId": "D00000001",
+                  "platform": "android",
+                  "token" : "GCM-registration-token-1",
+                  "categories": "00000000011"
+                }
+        401:
+          body:
+            application/json:
+              example: |
+                {
+                  "error": "User not authorized"
+                }
+    /{deviceid}:
+      get:
+        description: |
+          Get preferences by device ID.
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  { 
+                    "deviceId": "device-key-1",
+                    "studentId": "D00000001",
+                    "platform": "android",
+                    "token" : "GCM-registration-token-1",
+                    "categories": "0000000001"
+                  }
+          401:
+            body:
+              application/json:
+                example: |
+                  {
+                    "error": "User not authorized"
+                  }
+          404:
+            body:
+              application/json:
+                example: |
+                  { 
+                    "error": "Resource not found" 
+                  }  
+
+  /topics:
+    get:
+      securedBy: [x-custom]      
+      description: |
+        Get topic key/value mapping list
+      responses:
+        200:
+          body:
+            application/json:
+              schema: |
+                { "$schema": "http://json-schema.org/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              example: |
+                {
+                  "global": 1,
+                  "android" 2,
+                  "ios": 4
+                }
+        401:
+          body:
+            application/json:
+              example: |
+                {
+                  "error": "User not authorized"
+                }

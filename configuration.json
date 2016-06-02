@@ -1,0 +1,14 @@
+{
+  "http.port": 8543,
+  "total.instances": 1,
+  "high.availability": false,
+  "keystore.path": "keystore.jks",
+  "keystore.pass": "password",
+  "db.path": "./dbfile",
+  "gcm.api.key": "AIzaSyDcpbe9XYTh8wsoA9LzCW4vMW176KnMY1w",
+  "fcm.api.url": "https://fcm.googleapis.com/fcm/send",
+  "fcm.api.key": "AIzaSyD-4GKV31b0TltpZVB7flS9Nvb54kefdTw",
+  "client.secret": "cG9ydGFsdGVhbTpEZXZyeTEyMw==",
+  "mobile.service.authorization": "AtvaUJKoloIn6yFZa08tG6u4puY9HaRS4yfOUX6a8pc=",
+  "mobile.service.dsi": "D40373764"
+}

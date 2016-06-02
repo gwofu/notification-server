@@ -1,0 +1,202 @@
+#%RAML 0.8
+title: Notification REST API
+baseUri: http://localhost:8544/
+version: v1
+
+schemas:
+ - notification: |
+    {
+      "type": "object",
+      "$schema": "http://json-schema.org/schema#",
+      "id": "http://devry.com/mobile/notification.json",
+      "required": true,
+      "properties": {
+        "to": {
+          "type": "string",
+          "required": true,
+          "enum": ["/topics/global", "/topics/android", "/topics/ios"]
+        },
+        "notification": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "body": {
+              "type": "string"
+            },
+            "icon": {
+              "type": "string"
+            } 
+          },
+          "required": ["title", "body"]
+        }
+      }
+    }
+
+ - preferences: |
+    {
+      "type": "object",
+      "$schema": "http://json-schema.org/schema#",
+      "id": "http://devry.com/mobile/preferences.json",
+      "required": true,
+      "properties": {
+        "key": {
+          "description": "Device key",
+          "type": "String",
+          "required": true
+        },
+        "dsi": {
+          "type": "string",
+          "required": true
+        },
+        "token": {
+          "type": "string",
+          "required": true
+        },
+        "topics": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+    
+/api:              
+  /notification:
+    post:
+      description: |
+        Post notification to GCM server
+      body:
+        application/json:
+          schema: notification
+          example: |
+            {
+              "to": "/topics/global",
+              "notification" : {
+                "title": "Portugal vs. Denmark",
+                "body": "great match",
+                "icon": "myicon"
+              },
+            }
+    /topics/{topic}:
+      post:
+        description: |
+          Push notification to GCM server by topic.
+        body:
+          application/json:
+            schema: notification
+            example: |
+              {
+                "to": "/topics/{topic}",
+                "notification" : {
+                  "title": "Portugal vs. Denmark",
+                  "body": "great match",
+                  "icon": "myicon"
+                },
+              }
+              
+  /preferences:
+    get:
+      description: |
+        Get a list of all preferences
+      responses:
+        200:
+          body:
+            application/json:
+              schema: |
+                { "$schema": "http://json-schema.org/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object"
+                  }
+                }
+              example: |
+                [
+                  {
+                    "key": "device-key-1",
+                    "dsi": "D00000001",
+                    "token" : "GCM-registration-token-1",
+                    "topics": ["global", "android"]
+                  },
+                  {
+                    "key": "device-key-2",
+                    "dsi": "D00000002",
+                    "token" : "GCM-registration-token-2",
+                    "topics": ["global", "android"]
+                  },
+                  {
+                    "key": "device-key-3",
+                    "dsi": "D00000003",
+                    "token" : "GCM-registration-token-3",
+                    "topics": ["global", "android"]
+                  }                     
+                ]
+        404:
+          body:
+            application/json:
+              example: |
+                { "message": "Resource not found" }  
+    post:
+      description: |
+        Save user preferences on the backend database.
+      body:
+        application/json:
+          schema: preferences
+          example: |
+            {
+              "key": "device-key",
+              "dsi": "D40147554",
+              "token" : "GCM-registration-token",
+              "topics": ["global", "android"]
+            }    
+    /{deviceid}:
+      get:
+        description: |
+          Get preferences by device ID.
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  { 
+                  	"key": "device-key",
+                  	"dsi": "D00000000",
+                  	"token": "GCM-registration-token"
+                  }
+          404:
+            body:
+              application/json:
+                example: |
+                  { "message": "Resource not found" }  
+
+  /topics:
+    get:
+      description: |
+        Get topic key/value mapping list
+      responses:
+        200:
+          body:
+            application/json:
+              schema: |
+                { "$schema": "http://json-schema.org/schema",
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              example: |
+                {
+                  "global": 0,
+                  "android" 1,
+                  "ios": 2
+                }
